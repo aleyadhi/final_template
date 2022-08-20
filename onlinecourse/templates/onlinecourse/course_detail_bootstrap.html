@@ -57,11 +57,8 @@
             <!--
 
             A collapse example here:-->
+            <button data-toggle="collapse" data-target="#exam" class="btn btn-info btn-block">Start Exam</button>
             <div id="exam" class="collapse">
-                Click to expand elements within the collapse div
-                </div>
-
-            
 
             <!-- <HINT> If user is authenticated, show course exam with a list of question -->
                 {% if user.is_authenticated %}
@@ -78,6 +75,7 @@
             <!-- A choice submission form example-->
             <form id="questionform" action="point to a submit view" method="post">
                         ... for each question in the course ...
+                        {% for question in lesson.question_set.all %}
                         <div class="card mt-1">
                             <div class="card-header"><h5>{{ question.question_text}}</h5></div>
                             {% csrf_token %}
@@ -92,9 +90,11 @@
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                     <input class="btn btn-success btn-block" type="submit" value="Submit">
             </form> 
             {% endif %}
+            </div>
             <!--Check here to see more details Bootstrap checkbox
              https://www.w3schools.com/bootstrap4/bootstrap_forms_inputs.asp-->
     </div>
